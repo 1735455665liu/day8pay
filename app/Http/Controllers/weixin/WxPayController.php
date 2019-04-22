@@ -14,7 +14,6 @@ class WxPayController extends Controller
     public function pay(){
         //接受订单id
         $oid=intval($_GET['oid']);
-        var_dump($oid);die;
         $orderInfo=p_orders::where(['oid'=>$oid])->first()->toArray();
          echo '<pre>';print_r($orderInfo);echo '<pre>';
 

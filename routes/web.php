@@ -28,7 +28,8 @@ Route::get('/cart/add/{goods_id?}', 'CarController@cartadd');//添加至购物�
 
 //订单处理
 Route::get('/index', 'Order\OrderController@index'); //提交订单
+Route::get('/olist', 'Order\OrderController@olist'); //订单列表
 
 
 //微信支付
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/weixin/pay', 'weixin\WxController@pay');

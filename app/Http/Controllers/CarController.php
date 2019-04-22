@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Session;
 class CarController extends Controller
 {
     //购物车页面
-        public function index(){
+    public function index(){
             //查询购物车表中Uid和sessionid
             $cartInfo=p_cart::where(['id'=>Auth::id()],['session_id'=>Session::getId()])->get();
             //判断是否有数据
@@ -19,19 +19,19 @@ class CarController extends Controller
                 //设定总价格
                 $price=0;
                 //foreach循环
-                foreach ($arrcart as $k=>$v){
+                foreach ($arrcart as $k=>$v) {
                     //查询goods里id和cartgoods_id
-                    $goodsInfo=p_goods::where(['id'=>$v['goods_id']])->first()->toArray();
-                     //设定的总价格+=
-                    $price+=$goodsInfo['price'];
-                    $goodlist[]=$goodsInfo;
+                    $goodsInfo = p_goods::where(['id' => $v['goods_id']])->first()->toArray();
+                    //设定的总价格+=
+                    $price += $goodsInfo['price'];
+                    $goodslist[] = $goodsInfo;
                 }
-                //展示购物车
+                    //展示购物车
+                               //返回视图
                 $data = [
-                    'goods_list' => $goodlist,
-                    'total'     => $price
+                    'goods' => $goodslist,
+                    'total' => $price
                 ];
-                //返回视图
                 return view('cart.cart',$data);
             }else{
                 //没有
@@ -86,4 +86,5 @@ class CarController extends Controller
 
 
     }
+
 }

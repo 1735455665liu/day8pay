@@ -154,7 +154,9 @@ class WxPayController extends Controller
             //验证签名
             $sign = true;
             if($sign){       //签名验证成功
-                //TODO 逻辑处理  订单状态更新
+                $order_sn = $xml->out_trade_no;
+                $pay_time=strtotime($xml->time_end);
+                p_orders::updated($xml->payamount,$xml->pay_time)->where(['order_sn'=>$xml->order_sn]);
             }else{
                 //TODO 验签失败
                 echo '验签失败，IP: '.$_SERVER['REMOTE_ADDR'];

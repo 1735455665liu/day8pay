@@ -29,7 +29,7 @@ Route::get('/cart/add/{goods_id?}', 'CarController@cartadd');//添加至购物�
 //订单处理
 Route::get('/index', 'Order\OrderController@index'); //提交订单
 Route::get('/olist', 'Order\OrderController@olist'); //订单列表
-Route::get('/orderstatus/{oid?}', 'Order\OrderController@orderstatus'); //状态
+Route::get('/orderstatus', 'Order\OrderController@orderstatus'); //状态
 
 
 

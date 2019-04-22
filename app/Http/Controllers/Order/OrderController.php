@@ -52,4 +52,26 @@ class OrderController extends Controller
         ];
         return view('order/orderlist',$data);
     }
+
+//    订单状态
+    public function orderstatus($oid=0)
+    {
+        $oid = intval($oid);
+        $info = p_orders::where(['oid'=>$oid])->first();
+        $response = [];
+        if($info){
+            if($info->pay_time>0){      //已支付
+                $response = [
+                    'status'    => 0,       // 0 已支付
+                    'msg'       => 'ok'
+                ];
+            }
+            //echo '<pre>';print_r($info->toArray());echo '</pre>';
+        }else{
+            die("订单不存在");
+        }
+        die(json_encode($response));
+
+
+    }
 }

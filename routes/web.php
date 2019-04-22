@@ -29,7 +29,20 @@ Route::get('/cart/add/{goods_id?}', 'CarController@cartadd');//添加至购物�
 //订单处理
 Route::get('/index', 'Order\OrderController@index'); //提交订单
 Route::get('/olist', 'Order\OrderController@olist'); //订单列表
+Route::get('/orderstatus/{oid?}', 'Order\OrderController@orderstatus'); //订单列表
+
 
 
 //微信支付
-Route::get('/weixin/pay', 'weixin\WxController@pay');
+Route::get('/pay/{oid?}', 'weixin\WxPayController@pay');
+Route::post('/weixin/pay/notify', 'weixin\WxPayController@notify'); //支付回调
+
+
+
+
+
+//浏览缓存
+Route::get('/redis/{goods_id?}', 'redis\RedisController@index'); //浏览量
+
+Route::get('/redisAll/{goods_id?}', 'redis\RedisController@callAll'); //浏览排行
+Route::get('/Gstor', 'redis\RedisController@getstor'); //浏览排行

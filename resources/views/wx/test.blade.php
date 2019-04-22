@@ -72,16 +72,48 @@
     @endif
 
     <div class="content">
-        <ul>
-            @foreach($orderInfo as $k=>$v)
-                <li>
-                    {{ $v['oid']  }} >> {{$v['order_sn']}} >> {{$v['order_amount']}} >> {{date("Y-m-d H:i:s",$v['add_time'])}}
-                    <a target="_blank" href="/pay/{{$v['oid']}}"> 微信支付 </a>
-                    <br>
-                </li>
-            @endforeach
-        </ul>
+        <div class="title m-b-md">
+
+        </div>
+
+        <div id="qrcode"></div>
+
+        <div class="links">
+            <a href="https://laravel.com/docs">Docs</a>
+            <a href="https://laracasts.com">Laracasts</a>
+            <a href="https://laravel-news.com">News</a>
+            <a href="https://blog.laravel.com">Blog</a>
+            <a href="https://nova.laravel.com">Nova</a>
+            <a href="https://forge.laravel.com">Forge</a>
+            <a href="https://github.com/laravel/laravel">GitHub</a>
+        </div>
     </div>
 </div>
+
+<script src="/js/jquery/jquery-1.12.4.min.js"></script>
+<script src="/js/weixin/qrcode.js"></script>
+<script type="text/javascript">
+    new QRCode(document.getElementById("qrcode"), "{{$code_url}}");
+    //ajax轮询
+    setInterval(function () {
+        $.ajax({
+            url:'/orderstatus?oid='+"{{$oid}}",//地址
+            type:'get',// 请求的方式
+            dateType:'json',//类型
+            success:function (res) {
+                if(res.status==0){
+                    alert("支付成功");
+
+                }
+            }//
+
+
+        })
+    },2000)
+
+
+
+</script>
+
 </body>
 </html>

@@ -11,11 +11,13 @@ class WxPayController extends Controller
     public $weixin_unifiedorder_url = 'https://api.mch.weixin.qq.com/pay/unifiedorder';        // 统一下单接口
     public $notify_url = 'http://1809liuziye.comcto.com/weixin/pay/notify';     // 支付回调
 
-    public function pay($oid=0){
+    public function pay(){
         //接受订单id
-        $oid=intval($oid);
+        $oid=intval($_GET['oid']);
+        var_dump($oid);die;
         $orderInfo=p_orders::where(['oid'=>$oid])->first()->toArray();
-//         echo '<pre>';print_r($orderInfo);echo '<pre>';
+         echo '<pre>';print_r($orderInfo);echo '<pre>';
+
         $total_fee=1;
         $order_info=[
             'appid'=>env('WEIXIN_APPID_0'),   //微信支付绑定的服务

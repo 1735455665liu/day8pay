@@ -54,9 +54,9 @@ class OrderController extends Controller
     }
 
 //    订单状态
-    public function orderstatus($oid=0)
+    public function orderstatus()
     {
-        $oid = intval($oid);
+        $oid = intval($_GET['oid']);
         $info = p_orders::where(['oid'=>$oid])->first();
         $response = [];
         if($info){

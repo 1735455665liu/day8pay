@@ -76,7 +76,7 @@
             @foreach($orderInfo as $k=>$v)
                 <li>
                     {{ $v['oid']  }} >> {{$v['order_sn']}} >> {{$v['order_amount']}} >> {{date("Y-m-d H:i:s",$v['add_time'])}}
-                    <a target="_blank" href="/pay/{{$v['oid']}}"> 微信支付 </a>
+                    <a target="_blank" href="/pay/?oid={{$v['oid']}}"> 微信支付 </a>
                     <br>
                 </li>
             @endforeach

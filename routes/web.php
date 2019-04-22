@@ -14,3 +14,21 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/info', function () {
+    phpinfo();
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+//购物车
+Route::get('/cart', 'CarController@index');
+Route::get('/cart/add/{goods_id?}', 'CarController@cartadd');//添加至购物车
+
+//订单处理
+Route::get('/index', 'Order\OrderController@index'); //提交订单
+
+
+//微信支付
+Route::get('/home', 'HomeController@index')->name('home');

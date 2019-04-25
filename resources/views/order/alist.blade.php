@@ -72,16 +72,11 @@
     @endif
 
     <div class="content">
-        <ul>
-            @foreach($orderInfo as $k=>$v)
-                <li>
-                    <a  href="/indexlist/?oid={{$v['oid']}}">{{ $v['oid']  }} </a>
-                    {{--浏览数量：{{$incr}}--}}
-                    <a target="_blank" href="/pay/?oid={{$v['oid']}}"> 微信支付 </a>
-                    <br>
-                </li>
-            @endforeach
-        </ul>
+
+        订单ID：{{$detaInfo['order_id']}}<br>
+        商品名称：{{$detaInfo['goods_name']}}<br>
+        浏览数量：{{$incr}}
+
     </div>
 </div>
 </body>

@@ -8,6 +8,7 @@ use App\Model\p_orders;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Session;
 
 class OrderController extends Controller
@@ -46,10 +47,12 @@ class OrderController extends Controller
     //订单列表
     public function olist(){
         $orderInfo=p_orders::where(['uid'=>Auth::id()])->get()->toArray();
-//    var_dump($orderInfo);
+        $key="token";
+
         $data=[
-            'orderInfo'=>$orderInfo
+            'orderInfo'=>$orderInfo,
         ];
+
         return view('order/orderlist',$data);
     }
 
@@ -71,6 +74,46 @@ class OrderController extends Controller
             die("订单不存在");
         }
         die(json_encode($response));
+
+
+    }
+
+
+    public function scorce(){
+        $key='ss:goods:view';
+//        $lista=Redis::zRangeByScore($key,0,10000,['withscores'=>true]);  //正序
+//        echo '<pre>';print_r($lista);echo '<pre>';
+//        $listb=Redis::zRevRange($key,0,10000,true   );//降序
+//        echo '<pre>';print_r($listb);echo '<pre>';
+        $liuziye1='liuziye1';
+        $liuziye2='liuziye2';
+        $liuziye3='liuziye3';
+        $liuziye4='liuziye4';
+
+        Redis::zadd($key,222,$liuziye1);
+        Redis::zadd($key,333,$liuziye2);
+        Redis::zadd($key,6666,$liuziye3);
+        Redis::zadd($key,888,$liuziye4);
+
+        $lisr= Redis::zSize($key);
+        echo '<pre>';print_r($lisr);echo '<pre>';
+
+
+
+
+
+    }
+
+
+
+    public function detail(){
+        $dete=p_detail::where(['uid'=>Auth::id()])->get()->toArray();
+        echo '<pre>';print_r($dete);echo'<pre>';
+        $incr=Redis::incr();
+
+
+
+
 
 
     }

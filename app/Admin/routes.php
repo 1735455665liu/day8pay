@@ -11,12 +11,27 @@ Route::group([
 ], function (Router $router) {
 
     $router->get('/', 'HomeController@index')->name('admin.home');
+<<<<<<< HEAD
     $router->resource('/goods',GoodsController::class); //商品管理
     $router->resource('/orders',OrdersController::class);//商品订单
     $router->resource('/users',UserController::class);//用户管理
 //    $router->resource('/mac',OrdersController::class);//素材管理
+=======
+    $router->get('/valid', 'WxController@valid');//微信
+//    $router->get('/valid', 'WxController@Wxevent');//微信
+>>>>>>> liuziye
 
 
 
 
+<<<<<<< HEAD
+=======
+
+    $router->resource('/goods',GoodsController::class);//商品管理
+    $router->resource('/users',UsersController::class);//用户管理
+    $router->resource('/mac',MacController::class);//临时素材管理
+    $router->resource('/orders',OrdersController::class);//临时素材管理
+
+
+>>>>>>> liuziye
 });

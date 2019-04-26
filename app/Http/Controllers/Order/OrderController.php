@@ -10,7 +10,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Session;
-
+use GuzzleHttp\Client;
 class OrderController extends Controller
 {
     //生成订单
@@ -78,6 +78,7 @@ class OrderController extends Controller
 
     }
 
+<<<<<<< HEAD
 
     public function scorce(){
         $key='ss:goods:view';
@@ -117,4 +118,6 @@ class OrderController extends Controller
 
 
     }
+=======
+>>>>>>> liuziye
 }
